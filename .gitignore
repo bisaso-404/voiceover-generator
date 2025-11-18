@@ -1,0 +1,4 @@
+# Ignore sensitive files
+service_account.json
+__pycache__/
+.env

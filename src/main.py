@@ -8,7 +8,7 @@ load_dotenv
 
 SHEET_ID = os.getenv("SHEET_ID")
 PARENT_FOLDER_ID = os.getenv("PARENT_FOLDER_ID")
-RANGE = "'The Many Faces of Biology'!A1:B8"
+RANGE = "'The Seven Signs of Life'!A1:B7"
 
 def main():
     rows = read_sheet(SHEET_ID, RANGE)
@@ -22,7 +22,7 @@ def main():
     combined_script = " ".join(all_scripts)
 
     # Generate one audio file
-    filename = "VO_Complete_Biology-2.mp3"
+    filename = "VO_Complete_Biology-3.wav"
     output_path = os.path.join("output", filename)
 
     print("Generating:", filename)

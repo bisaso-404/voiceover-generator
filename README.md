@@ -1,7 +1,41 @@
 <a name="readme-top"></a>
 
+<!--
+!!! IMPORTANT !!!
+This README is an example of how you could professionally present your codebase. 
+Writing documentation is a crucial part of your work as a professional software developer and cannot be ignored. 
+
+You should modify this file to match your project and remove sections that don't apply.
+
+REQUIRED SECTIONS:
+- Table of Contents
+- About the Project
+  - Built With
+  - Live Demo
+- Getting Started
+- Authors
+- Future Features
+- Contributing
+- Show your support
+- Acknowledgements
+- License
+
+OPTIONAL SECTIONS:
+- FAQ
+
+After you're finished please remove all the comments and instructions!
+
+For more information on the importance of a professional README for your repositories: https://github.com/microverseinc/curriculum-transversal-skills/blob/main/documentation/articles/readme_best_practices.md
+-->
+
 <div align="center">
+  <!-- You are encouraged to replace this logo with your own! Otherwise you can also remove it. -->
+  <img src="https://github.com/user-attachments/assets/a862d06c-626a-4460-9540-1218ca01a0f4" alt="logo" width="140"  height="auto" />
+
+  <br/>
+
   <h3><b>Voiceover Generator</b></h3>
+
 </div>
 
 <!-- TABLE OF CONTENTS -->
@@ -25,44 +59,29 @@
 - [🤝 Contributing](#contributing)
 - [⭐️ Show your support](#support)
 - [🙏 Acknowledgements](#acknowledgements)
-- [❓ FAQ](#faq)
+- [❓ FAQ (OPTIONAL)](#faq)
 - [📝 License](#license)
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 Voiceover Generator <a name="about-project"></a>
+# 📖 [Voiceover Generator] <a name="about-project"></a>
 
-> Automated voiceover generation system that converts Google Sheets data into MP3 audio files.
-
-**Voiceover Generator** is a Python automation tool that reads scenario scripts from Google Sheets, generates high-quality MP3 voiceovers using Groq's PlayAI TTS, and automatically uploads the audio files to Google Drive for easy access and sharing.
+**[The Voiceover Generator]** is an automated Python tool that converts text from Google Sheets into MP3 voiceovers using OpenAI’s Text-to-Speech API, then uploads the generated audio files to Google Drive. It is built for animation studios, educators, content creators, and developers who need fast, automated, scalable voiceover production.
 
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
 
-<details>
-  <summary>Backend</summary>
-  <ul>
-    <li><a href="https://www.python.org/">Python 3.8+</a></li>
-    <li><a href="https://console.groq.com/">Groq API (PlayAI TTS)</a></li>
-  </ul>
-</details>
-
-<details>
-  <summary>APIs & Services</summary>
-  <ul>
-    <li><a href="https://developers.google.com/sheets/api">Google Sheets API</a></li>
-    <li><a href="https://developers.google.com/drive/api">Google Drive API</a></li>
-  </ul>
-</details>
+<details> <summary>Client</summary> <ul> <li>Google Sheets UI (used as the input interface)</li> </ul> </details> <details> <summary>Server</summary> <ul> <li>Python 3</li> <li>OpenAI TTS API</li> <li>Google APIs (Sheets + Drive)</li> </ul> </details> <details> <summary>Database</summary> <ul> <li>Google Sheets (acts as structured data storage)</li> </ul> </details>
 
 <!-- Features -->
 
 ### Key Features <a name="key-features"></a>
 
-- **Automated TTS Generation**: Convert text scripts to high-quality MP3 voiceovers using Groq's PlayAI
-- **Google Sheets Integration**: Read scenario data directly from Google Sheets
-- **Google Drive Upload**: Automatically upload generated audio files to specified Drive folders
+- **Automated voiceover generation directly from Google Sheets rows**
+- **MP3 generation using OpenAI TTS with high-quality neural voices**
+- **Automatic upload to Google Drive, organized into a target folder**
+- **Configurable sheet ranges, folder IDs, and script logic**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -70,9 +89,9 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-> This is a desktop automation tool - no live demo available.
+This project is used locally, but a sample workflow explanation is available here:
 
-- See the [Usage](#usage) section for running instructions
+Demo Documentation Link (coming soon)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -80,84 +99,138 @@
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
-> To get a local copy up and running, follow these steps.
+To get a local copy up and running, follow these steps.
 
 ### Prerequisites
 
 In order to run this project you need:
 
-- Python 3.8 or higher
-- pip (Python package installer)
-- Google Cloud Console account
-- Groq API account
+You need:
+
+> Python 3.10+
+
+> Google Cloud Project with
+
+> Google Sheets API enabled
+
+> Google Drive API enabled
+
+> OpenAI API key
+
+<!--
+Example command:
+
+```sh
+ gem install rails
+```
+ -->
 
 ### Setup
 
 Clone this repository to your desired folder:
+ ```
+git clone https://github.com/yourusername/voiceover-generator.git
+cd voiceover-generator
+
+```
+Place your Google OAuth credentials:
+```
+credentials.json  →  project root
+```
+
+<!--
+Example commands:
 
 ```sh
   cd my-folder
-  git clone <repository-url>
-  cd voiceover-generator
+  git clone git@github.com:myaccount/my-project.git
 ```
+--->
 
 ### Install
 
 Install this project with:
+```
+pip install -r requirements.txt
 
-```sh
-  pip install -r requirements.txt
 ```
 
-**Setup Google API credentials:**
-1. Create a project in Google Cloud Console
-2. Enable Google Sheets API and Google Drive API
-3. Create OAuth 2.0 credentials (Desktop application)
-4. Download as `credentials.json` and place in project root
+Set your environment variables:
+```
+export OPENAI_API_KEY=your_key_here
 
-**Setup Groq API:**
-1. Get your API key from Groq Console
-2. Create `.env` file: `GROQ_API_KEY=your_key_here`
+```
+Windows:
+```
+set OPENAI_API_KEY=your_key_here
+```
+<!--
+Example command:
 
-**Configure your data:**
-- Update `SHEET_ID` in `src/main.py` with your Google Sheet ID
-- Update `PARENT_FOLDER_ID` with your Google Drive folder ID
+```sh
+  cd my-project
+  gem install
+```
+--->
 
 ### Usage
 
 To run the project, execute the following command:
-
-```sh
-  python src/main.py
+```
+python src/main.py
 ```
 
-**Sheet Format:**
-- Column A: Scenario name
-- Column B: Script text
-- First row should be headers (range starts from A2)
-
-### Run tests
-
-To test TTS functionality:
-
-```sh
-  python src/test_tts.py
+The script will:
 ```
 
-### Deployment
+Read the Google Sheet (Scenario + Script columns)
 
-This is a desktop automation tool. No deployment needed - run locally as needed.
+Generate MP3 voiceovers using OpenAI TTS
+
+Upload the MP3 files to your Google Drive folder
+```
+
+Run tests
+```
+(Currently no automated tests — to be added in future versions.)
+```
+Deployment
+
+This project can be deployed using:
+```
+
+Local cron jobs
+
+Cloud Run
+
+GitHub Actions
+
+Any Python execution environment
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!--
+Example command:
+
+```sh
+  rails server
+```
+--->
+
 
 <!-- AUTHORS -->
 
 ## 👥 Authors <a name="authors"></a>
 
-👤 **Bronn**
+> Mention all of the collaborators of this project.
 
-- GitHub: [@bronn](https://github.com/bronn)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/bronn)
+👤 **Author1**
+
+- GitHub: [@bisaso-404](https://github.com/bisaso-404)
+- Twitter: [@bisaso_r](https://x.com/bisaso_r)
+- LinkedIn: [ronnie-bisaso/](https://linkedin.com/in/ronnie-bisaso/)
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -165,17 +238,16 @@ This is a desktop automation tool. No deployment needed - run locally as needed.
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **Multiple Voice Options**: Support for different PlayAI voices
-- [ ] **Batch Processing**: Process multiple sheets simultaneously
-- [ ] **Audio Quality Settings**: Configurable bitrate and format options
+
+- [ ] **Web dashboard for managing sheets and audio outputs**
+- [ ] **Support for multiple languages & custom voices**
+- [ ] **Background job processing + email notifications**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
 
 ## 🤝 Contributing <a name="contributing"></a>
-
-Contributions, issues, and feature requests are welcome!
 
 Feel free to check the [issues page](../../issues/).
 
@@ -185,36 +257,35 @@ Feel free to check the [issues page](../../issues/).
 
 ## ⭐️ Show your support <a name="support"></a>
 
-> If this project helps automate your voiceover workflow, please give it a star!
-
-If you like this project and find it useful for your automation needs, please consider giving it a ⭐️!
+If you find this project useful, please give it a ⭐ on GitHub — it helps a lot!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ACKNOWLEDGEMENTS -->
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
+ Special thanks to:
 
-> Thanks to the amazing APIs and services that make this automation possible.
+ > OpenAI for the TTS API
 
-I would like to thank:
-- Groq for their excellent PlayAI TTS service
-- Google for their robust Sheets and Drive APIs
-- The Python community for excellent libraries
+ > Google Cloud Platform for Sheets & Drive APIs
+
+ > Microverse for the professional README structure
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- FAQ -->
+<!-- FAQ (optional) -->
 
-## ❓ FAQ <a name="faq"></a>
+## ❓ FAQ (OPTIONAL) <a name="faq"></a>
 
-- **What voice options are available?**
+- **Can this generate multiple voice-overs at once?**
 
-  - Currently using "Aaliyah-PlayAI". Check Groq's PlayAI documentation for more voice options.
+  - Yes. Every row in the Google Sheet creates its own MP3 file.
 
-- **Can I use different Google accounts for Sheets and Drive?**
+- **Can I use a different TTS provider like Google or Azure?**
+ 
+  - Yes — you can extend voiceover_generator.py to add more providers.
 
-  - The OAuth flow uses one Google account for both services. Ensure your account has access to both the sheet and drive folder.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

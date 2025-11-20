@@ -1,7 +1,8 @@
 # Ignore sensitive files
 service_account.json
+credentials.json
+token.json
 __pycache__/
 .env
-.amazonq
-token.json
-credentials.json
+output/
+*.mp3

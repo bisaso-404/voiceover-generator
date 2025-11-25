@@ -18,28 +18,56 @@ def save_wav(filename: str, pcm: bytes, channels=1, rate=24000, sample_width=2):
         wf.writeframes(pcm)
     print(f"WAV file saved: {filename}")
 
-def generate_voice(text: str, output_path: str):
+def generate_voice(text: str, output_path: str,
+                                voice_name="Zephyr"):
     """
-    Generate TTS from text and save as WAV.
+    Strong Ugandan-accent TTS using SSML + phoneme overrides + prosody.
     """
-    # Generate audio
+
+    replacements = {
+        "there": "theya",
+        "their": "theya",
+        "water": "wota",
+        "people": "pee-po",
+        "teacher": "tee-cha",
+        "market": "maket",
+        "because": "becos",
+        "government": "gavament",
+        "brother": "broda",
+        "father": "fada",
+        "mother": "mada",
+        "together": "togetha",
+        "tomorrow": "tumoro",
+        "uganda": "You-ganda",
+        "kampala": "Kahm-pa-la",
+    }
+
+    tuned_text = text
+    for k, v in replacements.items():
+        tuned_text = tuned_text.replace(k, v).replace(k.capitalize(), v.capitalize())
+
+    ssml = f"""
+<speak xml:lang="en-UG">
+  <prosody rate="-22%" pitch="-3st" volume="+2dB">
+    {tuned_text}
+  </prosody>
+</speak>
+"""
+
     response = client.models.generate_content(
         model="gemini-2.5-flash-preview-tts",
-        contents=text,
+        contents=ssml,
         config=types.GenerateContentConfig(
             response_modalities=["AUDIO"],
             speech_config=types.SpeechConfig(
                 voice_config=types.VoiceConfig(
-                    prebuilt_voice_config=types.PrebuiltVoiceConfig(voice_name="Kore")
+                    prebuilt_voice_config=types.PrebuiltVoiceConfig(voice_name=voice_name)
                 )
             ),
         )
     )
 
-    # Extract raw PCM bytes
     pcm = response.candidates[0].content.parts[0].inline_data.data
-
-    # Save as WAV
     save_wav(output_path, pcm)
-
     return output_path
+

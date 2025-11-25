@@ -3,12 +3,12 @@ from voiceover_generator import generate_voice
 import os
 from dotenv import load_dotenv
 
-load_dotenv
+load_dotenv()
 
 
 SHEET_ID = os.getenv("SHEET_ID")
 PARENT_FOLDER_ID = os.getenv("PARENT_FOLDER_ID")
-RANGE = "'The Seven Signs of Life'!A1:B7"
+RANGE = "'The Building Blocks of Life: Plant & Animal Cells'!A1:B"
 
 def main():
     rows = read_sheet(SHEET_ID, RANGE)
@@ -22,7 +22,7 @@ def main():
     combined_script = " ".join(all_scripts)
 
     # Generate one audio file
-    filename = "VO_Complete_Biology-3.wav"
+    filename = "The_Building_Blocks_of_Life_Plant_&_Animal_Cells.wav"
     output_path = os.path.join("output", filename)
 
     print("Generating:", filename)

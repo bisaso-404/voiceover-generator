@@ -24,22 +24,14 @@ def generate_voice(text: str, output_path: str,
     Strong Ugandan-accent TTS using SSML + phoneme overrides + prosody.
     """
 
+    instructions = "Read aloud in a warm and friendly tone - Use a SLIGHT Ugandan accent and speak in an educational narrative way:"
+
+    text_full = instructions
+
     replacements = {
         "there": "theya",
         "their": "theya",
         "water": "wota",
-        "people": "pee-po",
-        "teacher": "tee-cha",
-        "market": "maket",
-        "because": "becos",
-        "government": "gavament",
-        "brother": "broda",
-        "father": "fada",
-        "mother": "mada",
-        "together": "togetha",
-        "tomorrow": "tumoro",
-        "uganda": "You-ganda",
-        "kampala": "Kahm-pa-la",
     }
 
     tuned_text = text

@@ -36,6 +36,16 @@ def get_google_services():
 
     return sheets_service, drive_service
 
+def get_sheet_names(sheet_id):
+    """Get all sheet names from a Google Spreadsheet."""
+    sheets_service, _ = get_google_services()
+    
+    result = sheets_service.spreadsheets().get(spreadsheetId=sheet_id).execute()
+    sheets = result.get('sheets', [])
+    
+    return [sheet['properties']['title'] for sheet in sheets]
+
+
 
 def read_sheet(sheet_id, range_name):
     """Reads data rows from a Google Sheet."""

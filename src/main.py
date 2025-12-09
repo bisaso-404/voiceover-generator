@@ -1,5 +1,6 @@
-from google_reader import read_sheet, upload_to_drive
+from google_reader import read_sheet, upload_to_drive, get_sheet_names
 from voiceover_generator import generate_voice
+
 import os
 from dotenv import load_dotenv
 
@@ -8,7 +9,7 @@ load_dotenv()
 
 SHEET_ID = os.getenv("SHEET_ID")
 PARENT_FOLDER_ID = os.getenv("PARENT_FOLDER_ID")
-RANGE = "'The Building Blocks of Life: Plant & Animal Cells'!A1:B"
+RANGE = "'What is Biology and Why Does It Matter?'!A1:B"
 
 def main():
     rows = read_sheet(SHEET_ID, RANGE)
@@ -22,7 +23,7 @@ def main():
     combined_script = " ".join(all_scripts)
 
     # Generate one audio file
-    filename = "The_Building_Blocks_of_Life_Plant_&_Animal_Cells.wav"
+    filename = "What_is_Biology_and_Why_Does_It_Matter.wav"
     output_path = os.path.join("output", filename)
 
     print("Generating:", filename)
@@ -34,3 +35,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

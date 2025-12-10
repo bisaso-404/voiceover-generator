@@ -17,15 +17,22 @@ def main():
     for sheet_name in sheet_names:
         print(f"Processing sheet: {sheet_name}")
         
+        # Clean filename - remove invalid characters
+        clean_name = re.sub(r'[<>:"/\\|?*]', '', sheet_name).replace(' ', '_')
+        filename = f"{clean_name}.wav"
+        output_path = os.path.join("output", filename)
+        
+        # Skip if file already exists
+        if os.path.exists(output_path):
+            print(f"{filename} already exists, skipping...")
+            continue
+        
         # Read data from current sheet
         range_name = f"'{sheet_name}'!B:B"  
         rows = read_sheet(SHEET_ID, range_name)
         
         # Combine all scripts (skip header)
-        all_scripts = []
-        for row in rows[1:]:
-            if row:  # Check if row has data
-                all_scripts.append(row[0])
+        all_scripts = [row[0] for row in rows[1:] if row]  
         
         if not all_scripts:
             print(f"No data in {sheet_name}, skipping...")
@@ -34,14 +41,10 @@ def main():
         combined_script = " ".join(all_scripts)
         
         # Generate audio file
-        # Clean filename - remove invalid characters
-        clean_name = re.sub(r'[<>:"/\\|?*]', '', sheet_name).replace(' ', '_')
-        filename = f"{clean_name}.wav"
-        output_path = os.path.join("output", filename)
-        
         print(f"Generating: {filename}")
         generate_voice(combined_script, output_path)
         
+        # Upload to Drive
         print("Uploading to Drive...")
         file_id = upload_to_drive(output_path, PARENT_FOLDER_ID)
         print(f"Uploaded {filename}, file ID: {file_id}")

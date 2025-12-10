@@ -24,10 +24,6 @@ def generate_voice(text: str, output_path: str,
     Strong Ugandan-accent TTS using SSML + phoneme overrides + prosody.
     """
 
-    instructions = "Read aloud in a warm and friendly tone - Use a SLIGHT Ugandan accent and speak in an educational narrative way:"
-
-    text_full = instructions
-
     replacements = {
         "there": "theya",
         "their": "theya",
@@ -40,6 +36,9 @@ def generate_voice(text: str, output_path: str,
 
     ssml = f"""
 <speak xml:lang="en-UG">
+ <metadata>
+      Read aloud in a warm and friendly tone - Use a SLIGHT Ugandan accent and speak in an educational narrative way:
+  </metadata>
   <prosody rate="-22%" pitch="-3st" volume="+2dB">
     {tuned_text}
   </prosody>
